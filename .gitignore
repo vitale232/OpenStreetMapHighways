@@ -5,3 +5,4 @@ __pycache__/
 OpenStreetMap_Data/
 extract/
 osm_downloads/
+logs/
