@@ -54,9 +54,10 @@ the process of getting things like GDAL, NumPy, and Pandas running on your machi
 so that it's easily replicated on other machines.
 
 The `environment.yml` file in this directory can be used to reconstruct the Python execution environment of this tool.
-To recreate the environment, install Miniconda or Anaconda with Python 3.6+ and run the following command:
+To recreate the environment, install Miniconda or Anaconda with Python 3.6+ and run the following two command:
 
 ```bash
+conda upgrade conda
 conda env create -f environment.yml
 ```
 
