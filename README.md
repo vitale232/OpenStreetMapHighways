@@ -127,8 +127,8 @@ to work around the quick-to-close problem.
 
 ## VS Code
 
-If using VS Code, ensure that you update the settings.json file (found in ./.vscode/settings.json) with the Anaconda
+If using VS Code, ensure that you update the settings.json file (found in `./.vscode/settings.json`) with the Anaconda
 Python executable for your system. It's currently set to:
-`D:\\Program_Files\\miniconda3\\envs\\py3\\python.exe`
+`D:\Program_Files\miniconda3\envs\py3\python.exe`
 
 The VS Code settings are currently using Bandit linting. You can easily change that if you'd like.
