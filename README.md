@@ -9,7 +9,7 @@ as shapefiles for use with any GIS software.
 This directory contains data from the OpenStreetMap project: https://openstreetmap.org
 
 OpenStreetMap is a GIS datasource that is constructed by a "community of mappers that contribute
-and maintain data about roads, trails, cafes, railway stations, and much more" [About OSM](https://www.openstreetmap.org/about)
+and maintain data about roads, trails, cafes, railway stations, and much more" [(Source: About OSM)](https://www.openstreetmap.org/about).
 The data is "Open", in that anyone can edit or download the data for their use.
 
 This directory contains a weekly extract of OpenStreetMap data for New York State, which is sourced from here:
@@ -81,9 +81,7 @@ download_and_extract_osm.py script will use this utility to convert the download
 This step is required for OSM Filter to execute. OSM Filter is optimized for the o5m format.
 
 To install OSM Convert, go to this link:
-https://wiki.openstreetmap.org/wiki/Osmconvert
-
-or use the version included in the `./bin` directory of this repository.
+https://wiki.openstreetmap.org/wiki/Osmconvert (or use the version included in the `./bin` directory of this repository).
 
 Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the `osmconvert.exe` binary.
 Python will then manage the execution of the tool.
@@ -96,11 +94,9 @@ NYS and find the data that is tagged with transportation related key/value pairs
 for more information on what data are excluded by this script.
 
 To install OSM Filter, go to this link:
-https://wiki.openstreetmap.org/wiki/Osmfilter
+https://wiki.openstreetmap.org/wiki/Osmfilter (or use the version included in the `./bin` directory of this repository).
 
-or use the version included in the `./bin` directory of this repository.
-
-Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the osmfilter.exe binary.
+Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the `osmfilter.exe` binary.
 Python will then manage the execution of the tool.
 
 
