@@ -22,16 +22,17 @@ to the most commonly used GIS data source at DOTs - the roads.
 OSM uses a key/value pair to tag attributes to each roadway. The OSM download is filtered to include all
 data that are tagged with a "highway" key. From there, the following values are removed to help focus
 the data on the public roadway network:
-    - footway
-    - pedestrian
-    - path
-    - track
-    - steps
-    - cycleway
-    - bridleway
-    - private
-    - raceway
-    - abandoned
+
+- footway
+- pedestrian
+- path
+- track
+- steps
+- cycleway
+- bridleway
+- private
+- raceway
+- abandoned
 
 The OSM data comes with multiple "layers", which include different shape types. The most relevant data 
 will be the data that includes the suffix "_lines.shp" on the shapefiles, as these are where most of the roadways
