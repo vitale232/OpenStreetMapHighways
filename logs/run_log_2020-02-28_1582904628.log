@@ -1,0 +1,57 @@
+2020-02-28 10:43:48,665 [MainThread  ] [INFO ]  Starting script : D:\OpenStreetMap\ExtractNewYork\download_and_extract_osm.py
+2020-02-28 10:43:48,665 [MainThread  ] [INFO ]  Start time      : 2020-02-28 10:43:48.665329
+
+2020-02-28 10:43:48,665 [MainThread  ] [INFO ]  
+Making an HTTP request to New York Latest at url:
+ https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf
+2020-02-28 10:47:28,887 [MainThread  ] [INFO ]  
+Creating download directory : D:\OpenStreetMap\ExtractNewYork\osm_downloads\2020-02-28
+2020-02-28 10:47:28,887 [MainThread  ] [INFO ]  
+Saving file as:
+ D:\OpenStreetMap\ExtractNewYork\osm_downloads\2020-02-28\new-york-latest.osm.pbf
+2020-02-28 10:47:30,040 [MainThread  ] [INFO ]  
+Converting OSM protocol buffer formatted file to O5M to prep for filtering:
+2020-02-28 10:47:30,040 [MainThread  ] [INFO ]   D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest.o5m
+2020-02-28 10:47:30,040 [MainThread  ] [INFO ]   File exists. Deleting:
+  D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest.o5m
+2020-02-28 10:47:30,087 [MainThread  ] [INFO ]  Calling system command:
+ D:\OpenStreetMap\ExtractNewYork\bin\osmconvert64-0.8.8p.exe D:\OpenStreetMap\ExtractNewYork\osm_downloads\2020-02-28\new-york-latest.osm.pbf -o=D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest.o5m
+2020-02-28 10:47:36,554 [MainThread  ] [INFO ]  
+Filtering out the OpenStreetMap roadways:
+2020-02-28 10:47:36,554 [MainThread  ] [INFO ]   D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm
+2020-02-28 10:47:36,554 [MainThread  ] [INFO ]  Calling system command:
+ D:\OpenStreetMap\ExtractNewYork\bin\osmfilter.exe D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest.o5m --keep=highway= --drop=highway=footway highway=pedestrian highway=path highway=track highway=steps highway=cycleway highway=bridleway access=private highway=raceway highway=abandoned construction=footway access=private -o=D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm -t=D:\OpenStreetMap\ExtractNewYork\osmfilter_tempfile --verbose
+2020-02-28 10:47:43,461 [MainThread  ] [INFO ]  
+Extracting OSM layers as shapefiles
+2020-02-28 10:47:43,477 [MainThread  ] [INFO ]  Working on layer: points
+2020-02-28 10:47:43,477 [MainThread  ] [INFO ]  File exists. Removing: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_points.shp
+2020-02-28 10:47:43,508 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_points.shp
+2020-02-28 10:47:43,508 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_points.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm points
+2020-02-28 10:48:01,728 [MainThread  ] [INFO ]  
+2020-02-28 10:48:01,728 [MainThread  ] [INFO ]  Working on layer: lines
+2020-02-28 10:48:01,736 [MainThread  ] [INFO ]  File exists. Removing: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_lines.shp
+2020-02-28 10:48:01,783 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_lines.shp
+2020-02-28 10:48:01,784 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_lines.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm lines
+2020-02-28 10:48:42,525 [MainThread  ] [INFO ]  
+2020-02-28 10:48:42,525 [MainThread  ] [INFO ]  Working on layer: multilinestrings
+2020-02-28 10:48:42,540 [MainThread  ] [INFO ]  File exists. Removing: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_multilinestrings.shp
+2020-02-28 10:48:42,571 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_multilinestrings.shp
+2020-02-28 10:48:42,571 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_multilinestrings.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm multilinestrings
+2020-02-28 10:48:57,387 [MainThread  ] [INFO ]  
+2020-02-28 10:48:57,388 [MainThread  ] [INFO ]  Working on layer: multipolygons
+2020-02-28 10:48:57,398 [MainThread  ] [INFO ]  File exists. Removing: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_multipolygons.shp
+2020-02-28 10:48:57,519 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_multipolygons.shp
+2020-02-28 10:48:57,519 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_multipolygons.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm multipolygons
+2020-02-28 10:49:12,600 [MainThread  ] [INFO ]  
+2020-02-28 10:49:12,600 [MainThread  ] [INFO ]  Working on layer: other_relations
+2020-02-28 10:49:12,603 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_other_relations.shp
+2020-02-28 10:49:12,604 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-02-28\OpenStreetMap_Roadways_other_relations.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-02-28\new-york-latest_roadways.osm other_relations
+2020-02-28 10:49:27,238 [MainThread  ] [INFO ]  EXCEPTION: There was an exception on the other_relations layer. Skipping.
+2020-02-28 10:49:27,238 [MainThread  ] [INFO ]  
+2020-02-28 10:49:27,241 [MainThread  ] [INFO ]  Execution completed : 2020-02-28 10:49:27.241113
+2020-02-28 10:49:27,241 [MainThread  ] [INFO ]  Execution time      : 0:05:38.575784

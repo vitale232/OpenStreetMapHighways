@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "D:\\Program_Files\\miniconda3\\envs\\py3\\python.exe",
+    "python.linting.banditEnabled": true,
+    "python.linting.enabled": true
+}

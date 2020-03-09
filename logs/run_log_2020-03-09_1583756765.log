@@ -1,0 +1,64 @@
+2020-03-09 08:26:05,240 [MainThread  ] [INFO ]  Starting script : D:\OpenStreetMap\ExtractNewYork\download_and_extract_osm.py
+2020-03-09 08:26:05,241 [MainThread  ] [INFO ]  Start time      : 2020-03-09 08:26:05.240798
+
+2020-03-09 08:26:05,241 [MainThread  ] [INFO ]  
+Making an HTTP request to New York Latest at url:
+ https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf
+2020-03-09 08:28:45,123 [MainThread  ] [INFO ]  
+Creating download directory : D:\OpenStreetMap\ExtractNewYork\osm_downloads\2020-03-09
+2020-03-09 08:28:45,123 [MainThread  ] [INFO ]  
+Saving file as:
+ D:\OpenStreetMap\ExtractNewYork\osm_downloads\2020-03-09\new-york-latest.osm.pbf
+2020-03-09 08:28:46,203 [MainThread  ] [INFO ]  
+Creating working directory:
+ D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09
+2020-03-09 08:28:46,203 [MainThread  ] [INFO ]  
+Converting OSM protocol buffer formatted file to O5M to prep for filtering:
+2020-03-09 08:28:46,203 [MainThread  ] [INFO ]   D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest.o5m
+2020-03-09 08:28:46,203 [MainThread  ] [INFO ]  Calling system command:
+ D:\OpenStreetMap\ExtractNewYork\bin\osmconvert64-0.8.8p.exe D:\OpenStreetMap\ExtractNewYork\osm_downloads\2020-03-09\new-york-latest.osm.pbf -o=D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest.o5m
+2020-03-09 08:28:52,876 [MainThread  ] [INFO ]  
+Filtering out the OpenStreetMap roadways:
+2020-03-09 08:28:52,877 [MainThread  ] [INFO ]   D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm
+2020-03-09 08:28:52,878 [MainThread  ] [INFO ]  Calling system command:
+ D:\OpenStreetMap\ExtractNewYork\bin\osmfilter.exe D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest.o5m --keep=highway= --drop=highway=footway highway=pedestrian highway=path highway=track highway=steps highway=cycleway highway=bridleway access=private highway=raceway highway=abandoned construction=footway access=private -o=D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm -t=D:\OpenStreetMap\ExtractNewYork\osmfilter_tempfile --verbose
+2020-03-09 08:28:59,571 [MainThread  ] [INFO ]  
+Extracting OSM layers as shapefiles
+2020-03-09 08:28:59,573 [MainThread  ] [INFO ]  Creating output directory:
+ P:\GIS\HighwayData\OpenStreetMap\2020-03-09
+2020-03-09 08:28:59,597 [MainThread  ] [INFO ]  Working on layer: points
+2020-03-09 08:28:59,599 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_points.shp
+2020-03-09 08:28:59,600 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_points.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm points
+2020-03-09 08:29:20,639 [MainThread  ] [INFO ]  
+2020-03-09 08:29:20,639 [MainThread  ] [INFO ]  Working on layer: lines
+2020-03-09 08:29:20,644 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_lines.shp
+2020-03-09 08:29:20,644 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_lines.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm lines
+2020-03-09 08:30:01,912 [MainThread  ] [INFO ]  
+2020-03-09 08:30:01,912 [MainThread  ] [INFO ]  Working on layer: multilinestrings
+2020-03-09 08:30:01,917 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_multilinestrings.shp
+2020-03-09 08:30:01,917 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_multilinestrings.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm multilinestrings
+2020-03-09 08:30:17,547 [MainThread  ] [INFO ]  
+2020-03-09 08:30:17,547 [MainThread  ] [INFO ]  Working on layer: multipolygons
+2020-03-09 08:30:17,549 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_multipolygons.shp
+2020-03-09 08:30:17,550 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_multipolygons.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm multipolygons
+2020-03-09 08:30:33,232 [MainThread  ] [INFO ]  
+2020-03-09 08:30:33,232 [MainThread  ] [INFO ]  Working on layer: other_relations
+2020-03-09 08:30:33,234 [MainThread  ] [INFO ]  Saving as: P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_other_relations.shp
+2020-03-09 08:30:33,235 [MainThread  ] [INFO ]  Calling system command:
+ ogr2ogr -f ESRI Shapefile P:\GIS\HighwayData\OpenStreetMap\2020-03-09\OpenStreetMap_Roadways_other_relations.shp D:\OpenStreetMap\ExtractNewYork\extract\2020-03-09\new-york-latest_roadways.osm other_relations
+2020-03-09 08:30:48,786 [MainThread  ] [ERROR]  EXCEPTION: There was an exception on the other_relations layer. Skipping.
+Traceback (most recent call last):
+  File "D:\OpenStreetMap\ExtractNewYork\download_and_extract_osm.py", line 168, in osm_to_shapefiles
+    print_and_call_command(ogr2ogr_parameters)
+  File "D:\OpenStreetMap\ExtractNewYork\download_and_extract_osm.py", line 44, in print_and_call_command
+    subprocess.check_call(command)
+  File "D:\Program_Files\miniconda3\envs\osmdiff_viewer\lib\subprocess.py", line 363, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['ogr2ogr', '-f', 'ESRI Shapefile', 'P:\\GIS\\HighwayData\\OpenStreetMap\\2020-03-09\\OpenStreetMap_Roadways_other_relations.shp', 'D:\\OpenStreetMap\\ExtractNewYork\\extract\\2020-03-09\\new-york-latest_roadways.osm', 'other_relations']' returned non-zero exit status 1.
+2020-03-09 08:30:48,798 [MainThread  ] [INFO ]  
+2020-03-09 08:30:48,799 [MainThread  ] [INFO ]  Execution completed : 2020-03-09 08:30:48.799875
+2020-03-09 08:30:48,800 [MainThread  ] [INFO ]  Execution time      : 0:04:43.559077
