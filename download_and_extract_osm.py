@@ -9,6 +9,8 @@ import requests
 from requests.exceptions import HTTPError
 
 
+### Check the `main` function to ensure the variables are configured properly for your needs! ###
+
 # Set up a console and file logger. This code block sets up the Python logging module, then I simply
 # overwrite the `print` function with the `logging.info` function. This logger will write to file and
 # print to the console.
@@ -180,6 +182,24 @@ def osm_to_shapefiles(osm_filepath, output_directory, output_name='OpenStreetMap
 
 
 def main():
+    # Update the variables to meet your needs prior to running this script
+    data_url = 'https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf'
+    verify_tls = False
+    base_output_dir = r'P:\GIS\HighwayData\OpenStreetMap'
+
+    output_shapefile_dir = os.path.join(
+        base_output_dir,
+        str(date.today())
+    )
+
+    if not os.path.isdir(output_shapefile_dir):
+        output_shapefile_dir = os.path.abspath(os.path.join(
+            os.path.dirname(__file__),
+            'OpenStreetMap_Data'
+        ))
+    if not os.path.isdir(output_shapefile_dir):
+        os.makedirs(output_shapefile_dir)
+
     download_directory = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
         'osm_downloads',
@@ -190,13 +210,7 @@ def main():
         'extract',
         str(date.today())
     )
-    output_shapefile_dir = os.path.join(
-        r'P:\GIS\HighwayData\OpenStreetMap',
-        str(date.today())
-    )
 
-    data_url = 'https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf'
-    verify_tls = False
     download_file = download_new_york_latest(
         url=data_url,
         download_directory=download_directory,
