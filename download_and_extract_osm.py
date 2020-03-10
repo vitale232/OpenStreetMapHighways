@@ -192,13 +192,12 @@ def main():
         str(date.today())
     )
 
-    if not os.path.isdir(output_shapefile_dir):
+    if not os.path.isdir(base_output_dir):
         output_shapefile_dir = os.path.abspath(os.path.join(
             os.path.dirname(__file__),
-            'OpenStreetMap_Data'
+            'OpenStreetMap_Data',
+            str(date.today())
         ))
-    if not os.path.isdir(output_shapefile_dir):
-        os.makedirs(output_shapefile_dir)
 
     download_directory = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
