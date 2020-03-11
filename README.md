@@ -65,6 +65,7 @@ Conda should proceed to install the required packages. You can find more informa
 https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 ## Known Issues and Workarounds
+### Conda
 
 You may find issues with the conda environment file. When pulling the file from this directory then trying to install on a Windows 10
 machine, I sometimes encounter an `Unexpected Error` when executing `conda env create -f environment.yml`. The only workaround for this
@@ -105,7 +106,7 @@ ruamel_yaml.reader.ReaderError: unacceptable character #x0000: special character
 
 If anyone knows what could be causing this issue, please open an issue in this repository!
 
-## HTTPS
+### HTTPS
 
 Some managed IT environments will lead to errors in anaconda and the python `requests` library. This is often related to IT organizations
 that manage TLS certificates. A brute force workaround exists, which involves turning off encryption for https requests. 
