@@ -64,6 +64,67 @@ conda env create -f environment.yml
 Conda should proceed to install the required packages. You can find more information regarding conda environments here:
 https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
+## OSM Tools Setup
+
+### OSM Tools Install Note
+
+You will find the OSM Convert and OSM Filter binaries predownloaded for windows 64-bit in the `./bin` directory. 
+If you leave them in place (an you're using 64-bit Windows!!) and do not
+move the `download_and_extract_osm.py` script from the root directory, the binaries should be discovered by the script
+without additional work.
+
+### OSM Convert
+This script relies on two open source tools distributed by OSM contributors. The tools are OSM Convert and OSM Filter.
+There are binary files that can be downloaded from the web for 64 bit windows, which are the easiest way to get 
+things running. OSM Convert is a utility that can convert OpenStreetMap data to and from various file formats. The
+data is downloaded in Protocol Buffer Format, which is a compressed version of the OSM XML file. The 
+download_and_extract_osm.py script will use this utility to convert the download from .pbf to the .o5m format.
+This step is required for OSM Filter to execute. OSM Filter is optimized for the o5m format.
+
+To install OSM Convert, go to this link:
+https://wiki.openstreetmap.org/wiki/Osmconvert (or use the version included in the `./bin` directory of this repository).
+
+Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the `osmconvert.exe` binary.
+Python will then manage the execution of the tool.
+
+### OSM Filter
+
+OSM Filter is a utility that can be used to extract data of interest from the full OSM file. OSM data includes every single
+thing that's visible on the map, from the traffic lights to the building polygons. Using OSM Filter, we can read the data from
+NYS and find the data that is tagged with transportation related key/value pairs. See the ABOUT THIS PROJECT section of the README
+for more information on what data are excluded by this script.
+
+To install OSM Filter, go to this link:
+https://wiki.openstreetmap.org/wiki/Osmfilter (or use the version included in the `./bin` directory of this repository).
+
+Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the `osmfilter.exe` binary.
+Python will then manage the execution of the tool.
+
+## Scheduling Script Execution
+
+This directory contains a Windows batch file, which can be used in the Windows Task Scheduler to schedule 
+reoccuring updates of the OpenStreetMap data. The file is called `download_and_extract_osm_schedule.bat`
+The .bat file simply activates the conda environment, runs the python script, and deactivates the conda env.
+
+Once you have replicated the conda environment, you'll need to update the `download_and_extract_osm_schedule.bat`
+script to point to the correct conda environment. If you navigate to the folder where you installed conda,
+you'll find a folder called `condabin` which includes a file called `activate.bat`. Replace any call to `conda`
+you may find in the batch file with the full filepath to the activate script. If you use the full path, you
+can get around adding conda to your system path variable. It's best to leave Python 3 off of the conda path at this
+time, since we are still using ArcGIS Desktop which relies on the deprecated Python 2. YMMV.
+
+Once you have installed Conda and updated the path in the batch file, ensure you change line 2 of 
+`downlaod_and_extract_osm_scheduled.bat` to match the location of the `download_and_extract_osm.py` on the system
+you'll be using to run the script.
+
+To actually schedule the job, simply go to the Windoze task Scheuduler and "Add a Task". You can set the frequency
+to whatever you desire. Make sure the "Action" is to execute the `download_and_extract_osm_schedule.bat` script.
+
+NOTE: I'd highly recommend ensuring that the script can be executed from a terminal window prior to scheduling the job.
+The Windows Task Scheduler can be a bit difficult to debug, as the terminal window will disappear quickly. You can 
+set the `timeout 5` line in the `download_and_extract_osm_schedule.bat` script to a bigger number (e.g. 3600 seconds)
+to work around the quick-to-close problem.
+
 ## Known Issues and Workarounds
 ### Conda
 
@@ -119,68 +180,6 @@ conda config --set ssl_verify False
 ```
 
 To enforce this workaround in the Python script, set `verify_tls = False`.
-
-## OSM Tools Setup
-
-### OSM Tools Install Note
-
-You will find the OSM Convert and OSM Filter binaries predownloaded for windows 64-bit in the `./bin` directory. 
-If you leave them in place (an you're using 64-bit Windows!!) and do not
-move the `download_and_extract_osm.py` script from the root directory, the binaries should be discovered by the script
-without additional work.
-
-### OSM Convert
-This script relies on two open source tools distributed by OSM contributors. The tools are OSM Convert and OSM Filter.
-There are binary files that can be downloaded from the web for 64 bit windows, which are the easiest way to get 
-things running. OSM Convert is a utility that can convert OpenStreetMap data to and from various file formats. The
-data is downloaded in Protocol Buffer Format, which is a compressed version of the OSM XML file. The 
-download_and_extract_osm.py script will use this utility to convert the download from .pbf to the .o5m format.
-This step is required for OSM Filter to execute. OSM Filter is optimized for the o5m format.
-
-To install OSM Convert, go to this link:
-https://wiki.openstreetmap.org/wiki/Osmconvert (or use the version included in the `./bin` directory of this repository).
-
-Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the `osmconvert.exe` binary.
-Python will then manage the execution of the tool.
-
-### OSM Filter
-
-OSM Filter is a utility that can be used to extract data of interest from the full OSM file. OSM data includes every single
-thing that's visible on the map, from the traffic lights to the building polygons. Using OSM Filter, we can read the data from
-NYS and find the data that is tagged with transportation related key/value pairs. See the ABOUT THIS PROJECT section of the README
-for more information on what data are excluded by this script.
-
-To install OSM Filter, go to this link:
-https://wiki.openstreetmap.org/wiki/Osmfilter (or use the version included in the `./bin` directory of this repository).
-
-Once you have downloaded the file, update the `download_and_extract_osm.py` file to point to the `osmfilter.exe` binary.
-Python will then manage the execution of the tool.
-
-
-## Scheduling Script Execution
-
-This directory contains a Windows batch file, which can be used in the Windows Task Scheduler to schedule 
-reoccuring updates of the OpenStreetMap data. The file is called `download_and_extract_osm_schedule.bat`
-The .bat file simply activates the conda environment, runs the python script, and deactivates the conda env.
-
-Once you have replicated the conda environment, you'll need to update the `download_and_extract_osm_schedule.bat`
-script to point to the correct conda environment. If you navigate to the folder where you installed conda,
-you'll find a folder called `condabin` which includes a file called `activate.bat`. Replace any call to `conda`
-you may find in the batch file with the full filepath to the activate script. If you use the full path, you
-can get around adding conda to your system path variable. It's best to leave Python 3 off of the conda path at this
-time, since we are still using ArcGIS Desktop which relies on the deprecated Python 2. YMMV.
-
-Once you have installed Conda and updated the path in the batch file, ensure you change line 2 of 
-`downlaod_and_extract_osm_scheduled.bat` to match the location of the `download_and_extract_osm.py` on the system
-you'll be using to run the script.
-
-To actually schedule the job, simply go to the Windoze task Scheuduler and "Add a Task". You can set the frequency
-to whatever you desire. Make sure the "Action" is to execute the `download_and_extract_osm_schedule.bat` script.
-
-NOTE: I'd highly recommend ensuring that the script can be executed from a terminal window prior to scheduling the job.
-The Windows Task Scheduler can be a bit difficult to debug, as the terminal window will disappear quickly. You can 
-set the `timeout 5` line in the `download_and_extract_osm_schedule.bat` script to a bigger number (e.g. 3600 seconds)
-to work around the quick-to-close problem.
 
 ## VS Code
 
