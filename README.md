@@ -64,6 +64,61 @@ conda env create -f environment.yml
 Conda should proceed to install the required packages. You can find more information regarding conda environments here:
 https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
+## Known Issues and Workarounds
+
+You may find issues with the conda environment file. When pulling the file from this directory then trying to install on a Windows 10
+machine, I sometimes encounter an `Unexpected Error` when executing `conda env create -f environment.yml`. The only workaround for this
+I have found involves VS Code. I open the `./environment.yml` file in VS code, change the encoding to UTF-8 (bottom right corner of VS Code),
+then change it back to the original encoding (i just use `ctrl+z` to undo the change), and save the file. This seems to fix the following error:
+
+```python
+Traceback (most recent call last):
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda\exceptions.py", line 1079, in __call__
+    return func(*args, **kwargs)
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda_env\cli\main.py", line 80, in do_call
+    exit_code = getattr(module, func_name)(args, parser)
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda_env\cli\main_create.py", line 80, in execute
+    directory=os.getcwd())
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda_env\specs\__init__.py", line 40, in detect
+    if spec.can_handle():
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda_env\specs\yaml_file.py", line 18, in can_handle
+    self._environment = env.from_file(self.filename)
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda_env\env.py", line 151, in from_file
+    return from_yaml(yamlstr, filename=filename)
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda_env\env.py", line 136, in from_yaml
+    data = yaml_load_standard(yamlstr)
+    File "D:\Program_Files\miniconda3\lib\site-packages\conda\common\serialize.py", line 76, in yaml_load_standard
+    return yaml.load(string, Loader=yaml.Loader, version="1.2")
+    File "D:\Program_Files\miniconda3\lib\site-packages\ruamel_yaml\main.py", line 933, in load
+    loader = Loader(stream, version, preserve_quotes=preserve_quotes)
+    File "D:\Program_Files\miniconda3\lib\site-packages\ruamel_yaml\loader.py", line 50, in __init__
+    Reader.__init__(self, stream, loader=self)
+    File "D:\Program_Files\miniconda3\lib\site-packages\ruamel_yaml\reader.py", line 85, in __init__
+    self.stream = stream  # type: Any  # as .read is called
+    File "D:\Program_Files\miniconda3\lib\site-packages\ruamel_yaml\reader.py", line 117, in stream
+    self.check_printable(val)
+    File "D:\Program_Files\miniconda3\lib\site-packages\ruamel_yaml\reader.py", line 255, in check_printable
+    'special characters are not allowed',
+ruamel_yaml.reader.ReaderError: unacceptable character #x0000: special characters are not allowed
+    in "<unicode string>", position 3
+```
+
+If anyone knows what could be causing this issue, please open an issue in this repository!
+
+## HTTPS
+
+Some managed IT environments will lead to errors in anaconda and the python `requests` library. This is often related to IT organizations
+that manage TLS certificates. A brute force workaround exists, which involves turning off encryption for https requests. 
+**This is a last resort option, and not recommended!**
+
+To enforce this workaround in conda, run the following command:
+
+```bash
+conda config --set ssl_verify False
+```
+
+To enforce this workaround in the Python script, set `verify_tls = False`.
+
 ## OSM Tools Setup
 
 ### OSM Tools Install Note
