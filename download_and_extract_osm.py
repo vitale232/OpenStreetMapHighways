@@ -9,7 +9,11 @@ import requests
 from requests.exceptions import HTTPError
 
 
-### Check the `main` function to ensure the variables are configured properly for your needs! ###
+### Update these variables to suit your needs!!! ###
+# They will be passed into the `main` function in the if __name__ == '__main__' block
+data_url = 'https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf'
+verify_tls = False
+base_output_dir = r'P:\GIS\HighwayData\OpenStreetMap'
 
 # Set up a console and file logger. This code block sets up the Python logging module, then I simply
 # overwrite the `print` function with the `logging.info` function. This logger will write to file and
@@ -181,12 +185,7 @@ def osm_to_shapefiles(osm_filepath, output_directory, output_name='OpenStreetMap
     return True
 
 
-def main():
-    # Update the variables to meet your needs prior to running this script
-    data_url = 'https://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf'
-    verify_tls = False
-    base_output_dir = r'P:\GIS\HighwayData\OpenStreetMap'
-
+def main(data_url, verify_tls, base_output_dir):
     output_shapefile_dir = os.path.join(
         base_output_dir,
         str(date.today())
@@ -250,7 +249,7 @@ if __name__ == '__main__':
     print(f'Start time      : {start_time}\n')
 
     try:
-        main()
+        main(data_url=data_url, verify_tls=verify_tls, base_output_dir=base_output_dir)
     except Exception as exc:
         if logger:
             logger.exception(f'An Exception occurred: {exc}: {traceback.format_exc()}')
